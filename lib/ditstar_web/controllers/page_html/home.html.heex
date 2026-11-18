@@ -6,7 +6,7 @@
     >
     </div>
     <.label_chip>Reddit leads, found for you</.label_chip>
-    <h1 class="max-w-[980px] text-[clamp(40px,5.8vw,84px)] font-extrabold leading-[0.98] tracking-[-0.045em] text-balance">
+    <h1 class="max-w-[980px] text-[clamp(min(36px,9.4vw),5.8vw,84px)] font-extrabold leading-[0.98] tracking-[-0.045em] text-balance">
       Your next customers are on Reddit.
       <.star_trail>Answer them first.</.star_trail>
     </h1>
@@ -37,6 +37,7 @@
         id="sign-up-hero-email"
         type="email"
         label="Work email"
+        hide_label
         placeholder="you@company.com"
         autocomplete="email"
         required
@@ -293,19 +294,11 @@
     </div>
   </section>
 
-  <section id="founder" class="border-t border-line bg-page-alt">
-    <div class="mx-auto max-w-container px-gutter py-section-y">
-      <.founder_note label="From the founder" signature="Arkadiusz" role="Founder, Ditstar">
-        I built Ditstar for my own products first. The people who need them ask about them on Reddit, and I never had the hours to go looking. So I made the tool I wanted: it finds the threads and hands me a reply I only have to check. Every feature runs on our own products before it reaches yours.
-      </.founder_note>
-    </div>
-  </section>
-
   <section id="access" data-surface="dark" class="flex grow items-center bg-ink text-on-slate">
     <div class="mx-auto flex w-full max-w-container flex-col items-center gap-8 px-gutter py-section-y text-center">
       <.star_mark surface="dark" size={64} />
       <h2 class="max-w-[820px] text-[clamp(34px,4.6vw,64px)] font-extrabold leading-none tracking-[-0.04em] text-balance">
-        Stop scrolling Reddit. Start answering it.
+        Fresh Reddit leads, every day.
       </h2>
 
       <.sign_up_confirmation
@@ -329,6 +322,7 @@
           id="sign-up-closing-email"
           type="email"
           label="Work email"
+          hide_label
           variant="charcoal"
           placeholder="you@company.com"
           autocomplete="email"

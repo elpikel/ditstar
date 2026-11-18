@@ -26,6 +26,26 @@ defmodule DitstarWeb.Controllers.PageController.HomeTest do
     refute page_text =~ "right now."
   end
 
+  test "the closing band headline says fresh Reddit leads arrive every day", %{conn: conn} do
+    document = conn |> get(~p"/") |> html_response(200) |> LazyHTML.from_document()
+
+    headline =
+      document
+      |> LazyHTML.query("section#access h2")
+      |> LazyHTML.text()
+      |> String.split()
+      |> Enum.join(" ")
+
+    assert headline == "Fresh Reddit leads, every day."
+  end
+
+  test "the landing page has no founder section", %{conn: conn} do
+    document = conn |> get(~p"/") |> html_response(200) |> LazyHTML.from_document()
+
+    assert document |> LazyHTML.query("section#founder") |> Enum.count() == 0
+    refute document |> LazyHTML.query("body") |> LazyHTML.text() =~ "From the founder"
+  end
+
   test "the hero sign-up form has a labelled email input and a Create account button",
        %{conn: conn} do
     document = conn |> get(~p"/") |> html_response(200) |> LazyHTML.from_document()

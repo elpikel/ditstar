@@ -149,6 +149,34 @@ defmodule DitstarWeb.UITest do
              document |> LazyHTML.query("input#user_email") |> LazyHTML.attribute("name")
   end
 
+  test "a text input with a hidden label keeps a screen-reader-only label tied to the input" do
+    form = to_form(%{"email" => ""}, as: :user)
+    assigns = %{form: form}
+
+    document =
+      render_document(~H"""
+      <.text_input field={@form[:email]} type="email" label="Work email" hide_label />
+      """)
+
+    label = LazyHTML.query(document, "label.sr-only[for=user_email]")
+
+    assert label |> LazyHTML.text() |> String.trim() == "Work email"
+    assert document |> LazyHTML.query("input#user_email") |> Enum.count() == 1
+  end
+
+  test "a text input shows its label visibly by default" do
+    form = to_form(%{"email" => ""}, as: :user)
+    assigns = %{form: form}
+
+    document =
+      render_document(~H"""
+      <.text_input field={@form[:email]} type="email" label="Work email" />
+      """)
+
+    assert document |> LazyHTML.query("label[for=user_email]") |> Enum.count() == 1
+    assert document |> LazyHTML.query("label.sr-only") |> Enum.count() == 0
+  end
+
   test "a text input shows the errors of a used form field" do
     form = to_form(%{"email" => "nope"}, as: :user, errors: [email: {"must have the @ sign", []}])
     assigns = %{form: form}
@@ -182,19 +210,6 @@ defmodule DitstarWeb.UITest do
 
     assert [_numeric_cell] =
              document |> LazyHTML.query("#replies td.text-right") |> Enum.to_list()
-  end
-
-  test "the founder note keeps the photo placeholder visible" do
-    assigns = %{}
-
-    document =
-      render_document(~H"""
-      <.founder_note label="From the founder" signature="Arkadiusz" role="Founder, Ditstar">
-        I built Ditstar for my own products first.
-      </.founder_note>
-      """)
-
-    assert LazyHTML.text(document) =~ "[YOUR PHOTO]"
   end
 
   test "the stat tile shows its label and number" do

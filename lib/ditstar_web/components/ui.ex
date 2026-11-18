@@ -113,6 +113,10 @@ defmodule DitstarWeb.UI do
   attr :value, :any
   attr :label, :string, required: true
 
+  attr :hide_label, :boolean,
+    default: false,
+    doc: "keeps the label for screen readers only, for forms whose placeholder and button say enough"
+
   attr :type, :string,
     default: "text",
     values: ~w(text email url password search tel number)
@@ -146,7 +150,15 @@ defmodule DitstarWeb.UI do
 
     ~H"""
     <div class="flex flex-col gap-2">
-      <label for={@id} class={["text-[13px] font-medium", input_label_class(@variant)]}>
+      <label
+        for={@id}
+        class={
+          if(@hide_label,
+            do: "sr-only",
+            else: ["text-[13px] font-medium", input_label_class(@variant)]
+          )
+        }
+      >
         {@label}
       </label>
       <div class="flex flex-wrap gap-2.5">
@@ -672,41 +684,6 @@ defmodule DitstarWeb.UI do
         class="surface-dark mt-auto flex flex-col gap-3.5 rounded-xl bg-surface-slate p-[18px] text-on-slate"
       >
         {render_slot(preview)}
-      </div>
-    </div>
-    """
-  end
-
-  @doc """
-  Renders the founder note: the photo placeholder, a large first-person
-  paragraph and a handwritten signature.
-
-      <.founder_note label="From the founder" signature="Arkadiusz" role="Founder, Ditstar">
-        I built Ditstar for my own products first...
-      </.founder_note>
-  """
-  attr :label, :string, required: true
-  attr :signature, :string, required: true
-  attr :role, :string, required: true
-  attr :class, :any, default: nil
-  attr :rest, :global
-  slot :inner_block, required: true
-
-  def founder_note(assigns) do
-    ~H"""
-    <div class={["flex flex-wrap items-center gap-14", @class]} {@rest}>
-      <div class="flex aspect-square w-[280px] max-w-full flex-none items-center justify-center rounded-3xl border-[1.5px] border-dashed border-line-dashed font-mono text-[13px] text-body-muted">
-        [YOUR PHOTO]
-      </div>
-      <div class="flex min-w-0 flex-[1_1_480px] flex-col gap-6">
-        <span class="font-mono text-xs uppercase tracking-[0.1em] text-body-muted">{@label}</span>
-        <p class="text-[clamp(21px,2.1vw,30px)] font-semibold leading-[1.35] tracking-[-0.02em] text-pretty text-ink">
-          {render_slot(@inner_block)}
-        </p>
-        <div class="flex flex-col gap-1">
-          <span class="font-hand text-[44px] font-semibold leading-none text-ink">{@signature}</span>
-          <span class="text-sm text-body-muted">{@role}</span>
-        </div>
       </div>
     </div>
     """

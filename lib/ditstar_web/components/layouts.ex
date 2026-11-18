@@ -120,7 +120,7 @@ defmodule DitstarWeb.Layouts do
         id="landing-header"
         class="sticky top-3 z-40 mx-auto mt-3 w-full max-w-container px-[calc(var(--gutter)-16px)]"
       >
-        <div class="flex flex-wrap items-center justify-between gap-6 rounded-card border border-line bg-page/80 px-4 py-2 shadow-[0_10px_30px_-12px_color-mix(in_oklab,var(--ink)_22%,transparent)] backdrop-blur-md">
+        <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 rounded-card border border-line bg-page/80 px-4 py-2 shadow-[0_10px_30px_-12px_color-mix(in_oklab,var(--ink)_22%,transparent)] backdrop-blur-md">
           <a
             href="#top"
             class="flex min-h-target-min items-center gap-[9px] text-[21px] font-extrabold tracking-[-0.03em] text-ink no-underline"

@@ -218,7 +218,7 @@ Ditstar doesn't go public until everything the landing page promises works (owne
 - [ ] Autopilot within your schedule and rules, labelled when Ditstar posts (M9)
 - [ ] Tracked links with visits and signups (M6)
 - [ ] Production email adapter and deploy (deploy slug)
-- [ ] The landing page's founder note and `[YOUR PHOTO]`, `[YOUR PRODUCT]`, `[COMPETITOR]` placeholders replaced with real content
+- [ ] The landing page's `[YOUR PRODUCT]` and `[COMPETITOR]` placeholders replaced with real content
 
 If one of these slips, change the landing copy before launch instead of shipping a promise the product doesn't keep.
 
