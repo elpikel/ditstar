@@ -116,7 +116,11 @@ reviews (they review these changes with the code):
   *Architecture doc* in `.claude/commands/document.md`: update only the
   sections the work touched (a new context, schema, route, worker, external
   client), and link any ADR the plan produced. If it doesn't exist yet,
-  create it.
+  create it. Keep its architecture diagram current.
+- **The plan's diagrams** (`.claude/work/<slug>/plan.md`): if the built code
+  differs from a task's diagram or the change diagram (a function renamed,
+  moved or added), update the diagram to match the code, following
+  *Change diagrams* in `.claude/commands/brainstorm.md`.
 
 If the work changed neither, say so in the review guide and skip. These
 changes go in the split as one `docs:` commit after the task commits. The
@@ -126,6 +130,8 @@ if `CONTEXT.md` has both, split it by hunk.
 Write a **review guide** to `.claude/work/<slug>/review.md` and show it to
 the user, one block per task:
 - the task and its planned commit message: what it does, in one line;
+- the task's diagram as built (Mermaid, per *Change diagrams* in
+  `.claude/commands/brainstorm.md`);
 - the files to look at, most important first, with `file:line` for the key change;
 - decisions the builder made on its own, and review rounds that failed and why;
 - how to try it: the test command, and an example request for endpoints.

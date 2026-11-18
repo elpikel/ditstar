@@ -64,7 +64,9 @@ How the system is built, for someone about to change it. Describe what
 exists, never what's planned (that's `/brainstorm` and the ADRs).
 
 1. **Overview:** what the system does and its main parts, in a few lines; a
-   small diagram (Mermaid) when it helps.
+   always an architecture diagram (Mermaid `flowchart LR`): entry points →
+   contexts → schemas/tables and external services, drawn from the code as it
+   is.
 2. **Contexts:** each context under the context root, what it owns (schemas,
    tables), and its public entry points. Which contexts call which.
 3. **Web:** router scopes and pipelines, what each serves (LiveView,

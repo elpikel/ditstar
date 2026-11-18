@@ -95,10 +95,16 @@ ADR: docs/adr/NNNN-<slug>.md  (or: none)
 ## Approach
 <a short paragraph: the design, and what was rejected>
 
+## Change diagram
+<Mermaid: the whole feature — every module and function it adds, changes or
+removes, and the calls between them. See *Change diagrams*.>
+
 ## Tasks
 - [ ] **1. <unit of work>** — criteria: AC1, AC2
   Files: `lib/…`, `test/…`
   Commit: `feat(<scope>): <message>`
+  Diagram:
+  <Mermaid: only this task's slice of the change diagram>
 ```
 
 - Tasks in dependency order, one seam each; each becomes one commit, so each
@@ -111,6 +117,49 @@ ADR: docs/adr/NNNN-<slug>.md  (or: none)
   LiveView via `live/2`, or `Worker.perform/1`.
 - If params or responses change and `.claude/project.md` lists an API spec, a
   task updates the API spec schemas.
+
+- Every plan has a **Change diagram**, and every task a **Diagram** of its
+  own slice. No task without a diagram.
+
+### Change diagrams
+
+Every change is visualised as a Mermaid `flowchart LR`, so the user sees
+which modules and functions move before reading any code:
+
+- **Modules are subgraphs**, titled with the full module name
+  (`Ditstar.Reddit.Ingest`). Group them left to right by layer: entry point
+  (router, LiveView, controller, Oban worker) → context → schema / external
+  client.
+- **Functions are nodes**, labelled `name/arity`. Schemas show as a node
+  labelled with the table name; a migration as a node `migration: <name>`.
+- **Edges are calls** (`-->`), labelled with what flows when it isn't obvious
+  (`-->|thread attrs|`).
+- **Colour by change**, with these class definitions at the top of each
+  diagram: green `added`, amber `changed`, red dashed `removed`. Show
+  unchanged neighbours plain, and only those needed to see where the change
+  plugs in.
+
+```mermaid
+flowchart LR
+  classDef added fill:#d1fae5,stroke:#059669,color:#064e3b
+  classDef changed fill:#fef3c7,stroke:#d97706,color:#78350f
+  classDef removed fill:#fee2e2,stroke:#dc2626,color:#7f1d1d,stroke-dasharray:4 3
+
+  subgraph worker["Ditstar.Workers.IngestSubreddit"]
+    perform["perform/1"]:::added
+  end
+  subgraph ingest["Ditstar.Reddit"]
+    fetch_new["fetch_new_posts/2"]:::added
+    upsert["upsert_threads/2"]:::changed
+  end
+  subgraph client["Ditstar.Reddit.Client (behaviour)"]
+    listing["subreddit_listing/2"]:::added
+  end
+  threads[("threads")]
+
+  perform --> fetch_new --> listing
+  fetch_new -->|thread attrs| upsert --> threads
+```
 
 Re-running on an existing slug refines the docs in place and sets
 `Status: planned`.

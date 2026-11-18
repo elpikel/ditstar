@@ -2,6 +2,32 @@
 
 How Ditstar is built today. Planned work lives in `.claude/work/` plans and `docs/adr/`, not here.
 
+## Overview
+
+Fresh `phx.new` app: no domain code yet. The target design is in `docs/ROADMAP.md`.
+
+```mermaid
+flowchart LR
+  browser(["Browser"])
+
+  subgraph web["DitstarWeb"]
+    router["Router<br/>:browser pipeline"]
+    page["PageController.home/2"]
+    dashboard["LiveDashboard · /dev<br/>(dev only)"]
+  end
+
+  subgraph core["Ditstar"]
+    repo["Repo"]
+    mailer["Mailer (Swoosh)"]
+  end
+
+  db[("PostgreSQL<br/>ditstar_dev")]
+
+  browser --> router --> page
+  router --> dashboard
+  repo --> db
+```
+
 ## Stack
 
 - Elixir ~> 1.17, Phoenix 1.8, Phoenix LiveView 1.2, Bandit
