@@ -35,3 +35,7 @@ ditstar-*.tar
 npm-debug.log
 /assets/node_modules/
 
+
+# Claude kit: local working docs and personal settings
+/.claude/work/
+/.claude/settings.local.json
