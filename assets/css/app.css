@@ -3,6 +3,8 @@
 
 @import "tailwindcss" source(none);
 @import "phoenix-colocated/ditstar/colocated.css";
+@import "./tokens.css";
+@import "./fonts.css";
 @source "../css";
 @source "../js";
 @source "../../lib/ditstar_web";
@@ -101,5 +103,133 @@
 
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session], [data-phx-teleported-src] { display: contents }
+
+/* Ditstar design tokens as Tailwind utilities.
+   Values live only in tokens.css; this block maps each token to a utility name.
+   Names avoid Tailwind's built-in palettes (slate-*, lime-*) and daisyUI's
+   theme colours (accent, primary, base-*).
+
+   Colour (bg-*, text-*, border-*, outline-*, fill-*, ...)
+     --page               -> page
+     --page-alt           -> page-alt
+     --white              -> white
+     --chip               -> chip
+     --ink                -> ink
+     --text               -> body
+     --text-muted         -> body-muted
+     --line               -> line
+     --line-strong        -> line-strong
+     --line-dashed        -> line-dashed
+     --slate              -> surface-slate
+     --slate-sidebar      -> surface-slate-sidebar
+     --slate-raised       -> surface-slate-raised
+     --slate-selected     -> surface-slate-selected
+     --slate-line         -> surface-slate-line
+     --slate-line-strong  -> surface-slate-line-strong
+     --on-slate           -> on-slate
+     --on-slate-2         -> on-slate-2
+     --on-slate-muted     -> on-slate-muted
+     --charcoal-raised    -> charcoal-raised
+     --charcoal-line      -> charcoal-line
+     --accent             -> accent-lime
+     --on-accent          -> on-accent
+     --warn               -> warn
+
+   Font family (font-*)
+     --font-sans          -> font-sans (also the default body font)
+     --font-mono          -> font-mono
+     --font-hand          -> font-hand
+
+   Radius (rounded-*)
+     --radius-chip        -> rounded-chip
+     --radius-control     -> rounded-control
+     --radius-control-app -> rounded-control-app
+     --radius-card        -> rounded-card
+     --radius-window      -> rounded-window
+     --radius-feature     -> rounded-feature
+     --radius-pill        -> rounded-pill
+
+   Layout (max-w-*, w-*, px-*, py-*, min-h-*, ...)
+     --container          -> container  (max-w-container)
+     --gutter             -> gutter     (px-gutter)
+     --section-y          -> section-y  (py-section-y)
+     --sidebar            -> sidebar    (w-sidebar)
+     --target-min         -> target-min (min-h-target-min)
+
+   Focus: every :focus-visible gets a 2px --ink outline with 2px offset.
+   Add the `surface-dark` class (or data-surface="dark") to a slate or ink
+   container to switch focus outlines inside it to --accent. */
+@theme inline reference {
+  --color-page: var(--page);
+  --color-page-alt: var(--page-alt);
+  --color-white: var(--white);
+  --color-chip: var(--chip);
+  --color-ink: var(--ink);
+  --color-body: var(--text);
+  --color-body-muted: var(--text-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-line-dashed: var(--line-dashed);
+  --color-surface-slate: var(--slate);
+  --color-surface-slate-sidebar: var(--slate-sidebar);
+  --color-surface-slate-raised: var(--slate-raised);
+  --color-surface-slate-selected: var(--slate-selected);
+  --color-surface-slate-line: var(--slate-line);
+  --color-surface-slate-line-strong: var(--slate-line-strong);
+  --color-on-slate: var(--on-slate);
+  --color-on-slate-2: var(--on-slate-2);
+  --color-on-slate-muted: var(--on-slate-muted);
+  --color-charcoal-raised: var(--charcoal-raised);
+  --color-charcoal-line: var(--charcoal-line);
+  --color-accent-lime: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-warn: var(--warn);
+
+  --font-hand: var(--font-hand);
+
+  --radius-chip: var(--radius-chip);
+  --radius-control: var(--radius-control);
+  --radius-control-app: var(--radius-control-app);
+  --radius-card: var(--radius-card);
+  --radius-window: var(--radius-window);
+  --radius-feature: var(--radius-feature);
+  --radius-pill: var(--radius-pill);
+
+  --container-container: var(--container);
+  --spacing-gutter: var(--gutter);
+  --spacing-section-y: var(--section-y);
+  --spacing-sidebar: var(--sidebar);
+  --spacing-target-min: var(--target-min);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+
+  :where(.surface-dark, [data-surface="dark"]) :focus-visible {
+    outline-color: var(--accent);
+  }
+}
+
+/* Decorative dot grid behind the landing hero: --ink dots at 13% on the page
+   background, 22px apart, fading out towards the edges and the app preview. */
+@layer components {
+  .hero-backdrop {
+    background-image: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--ink) 13%, transparent) 1.5px,
+      transparent 2px
+    );
+    background-size: 22px 22px;
+    background-position: center top;
+    mask-image: radial-gradient(ellipse 60% 520px at 50% 340px, black 20%, transparent 100%);
+  }
+}
 
 /* This file is for your main application CSS */

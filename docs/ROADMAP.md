@@ -5,9 +5,19 @@ Milestones for phase 1 (internal), from `README.md`. Terms are defined in `CONTE
 Each milestone ends with something we can use on our own products. Each one becomes a `/brainstorm` slug, where its user stories and plan are written.
 
 ```
-M1 Foundations ─► M2 Ingest ─► M3 Score + Inbox ─► M4 Drafts ─► M5 Alerts & triage ─► M6 Tracking ─► M7 Dogfood gate
-                                                                                                  └─► M8 Managed accounts (optional)
+M1 Foundations ─► M2 Ingest ─► M3 Score + Inbox ─► M3b Instant setup ─► M4 Drafts ─► M5 Alerts & triage ─► M6 Tracking ─► M7 Dogfood gate
+                                                                                                  └─► M8 Managed accounts ─► M9 Autopilot
 ```
+
+## How it works for the user
+
+The target flow (owner, 2026-11-18). Every milestone is measured against it.
+
+1. **Create an account, then paste your site's URL or describe your product.** Sign-up asks only for an email. Right after it, a guided step asks for the URL (Ditstar reads the site) or a pasted product description, and fills in the Product: name, description and voice. Then the app opens.
+2. **We pick the Reddit channels for you.** It suggests Watched Subreddits, Keywords and Competitors; you remove what doesn't fit.
+3. **Pick how many replies to post, and when.** For example 3 a day, weekdays, 9–17 in your time zone.
+4. **Get your first replies.** Drafts for the best Opportunities arrive in the Inbox, paced to your schedule.
+5. **Accept each one, or put it on autopilot.** Accept: copy it and open the thread, or approve a batch. Autopilot: Ditstar posts within your schedule and rules.
 
 ## Target architecture
 
@@ -34,7 +44,7 @@ flowchart LR
     score_w["Score · M3"]
     draft_w["Draft · M4"]
     alert_w["Alert · M5"]
-    post_w["Post · M8"]
+    post_w["Post · M8 / Autopilot · M9"]
   end
 
   subgraph contexts["Contexts (Ditstar.*)"]
@@ -114,6 +124,18 @@ Pipeline: `Ingest → Score → (Opportunity) → Draft → Alert`, each step an
 
 **Done when:** a week of Inbox output looks mostly right to us, and the cost per day is known.
 
+## M3b — Instant setup (after M3)
+
+**Goal:** after sign-up, paste a URL or a description and Setup fills itself (flow steps 1–2).
+
+- Fetch the site with Req (title, meta, main text). The LLM writes the Product description and voice notes, and suggests Keywords and Competitors.
+- Suggest Watched Subreddits: the LLM proposes them, the Reddit API (M2) checks they exist and are active, and they're ranked by fit.
+- Onboarding after sign-up: a User whose Account has no Products lands on a guided step (URL, or paste a description) instead of the empty app. Submitting it creates the Product and opens Setup with the suggestions.
+- Setup shows the suggestions as pre-filled chips you can remove. Manual Setup from M1 stays as the review and edit screen.
+- Errors are handled: unreachable site, thin content, no good subreddits (falls back to manual entry).
+
+**Done when:** pasting our own products' URLs gives a Setup we'd keep with only small edits, and the first Opportunities show up without typing a keyword.
+
 ## M4 — Drafts
 
 **Goal:** each Opportunity comes with a reply worth posting.
@@ -132,8 +154,10 @@ Pipeline: `Ingest → Score → (Opportunity) → Draft → Alert`, each step an
 - Opportunity status: new → replied / dismissed, with filters in the Inbox.
 - Alerts for new high-score Opportunities, by email (Swoosh) first; a digest or instant per Product.
 - Dismiss reasons, fed back to tune thresholds.
+- Posting schedule per Product (flow step 3): how many replies a day and in which time windows, in the Account's time zone. The Inbox and digest offer that many Drafts per window; the rest wait in a queue ranked by score.
+- Autopilot, part 1: a daily digest with Drafts ready to go, and batch review (approve or skip many Opportunities in one pass).
 
-**Done when:** we act on Opportunities from alerts instead of polling.
+**Done when:** we act on Opportunities from alerts and batch review instead of polling.
 
 ## M6 — Tracking
 
@@ -156,7 +180,7 @@ Pipeline: `Ingest → Score → (Opportunity) → Draft → Alert`, each step an
 
 **Done when:** go / no-go on SaaS, with numbers.
 
-## M8 — Managed accounts (optional, after M6)
+## M8 — Managed accounts (after M6)
 
 **Goal:** Ditstar posts approved Drafts from accounts it operates, as disclosed Paid Placements.
 
@@ -168,7 +192,35 @@ Pipeline: `Ingest → Score → (Opportunity) → Draft → Alert`, each step an
 
 **Done when:** an approved Draft posts with its disclosure, and posting into a disallowed subreddit is refused.
 
+## M9 — Autopilot (after M7 and M8)
+
+**Goal:** Ditstar replies on its own, within rules the customer sets, without hurting the customer's name on Reddit.
+
+- Autopilot rules per Product, opt-in: which Intents, the minimum score and which subreddits get a reply without manual approval.
+- Posted from Managed Accounts only, every reply labelled as a paid placement, and only in subreddits whose rules allow promotional replies (the M8 guardrails apply unchanged).
+- Posts only within the Product's posting schedule (M5), never above its daily count. Hard rate limits per account and subreddit on top, plus a kill switch per Product and a global one.
+- A log of every autopilot reply, with undo (delete the comment) and alerts when a reply is removed, downvoted or reported.
+- Quality checks before posting: the Draft passes a review step (rules plus an LLM check), and anything uncertain falls back to manual approval.
+- An ADR recording the guardrails and why each exists.
+
+**Done when:** autopilot replies run for our own products for two weeks within the limits, with no removed replies and no account actions from Reddit, and the kill switch stops posting immediately.
+
 ---
+
+## Before going live
+
+Ditstar doesn't go public until everything the landing page promises works (owner, 2026-11-18):
+
+- [ ] Guided onboarding after sign-up: paste a URL or a description, then the app opens (M3b)
+- [ ] Suggested subreddits, keywords and competitors from the site (M3b)
+- [ ] Posting schedule per Product: replies a day and time windows (M5)
+- [ ] Drafts you approve, one by one or in a batch (M4, M5)
+- [ ] Autopilot within your schedule and rules, labelled when Ditstar posts (M9)
+- [ ] Tracked links with visits and signups (M6)
+- [ ] Production email adapter and deploy (deploy slug)
+- [ ] The landing page's founder note and `[YOUR PHOTO]`, `[YOUR PRODUCT]`, `[COMPETITOR]` placeholders replaced with real content
+
+If one of these slips, change the landing copy before launch instead of shipping a promise the product doesn't keep.
 
 ## Later — Phase 2 (SaaS)
 
@@ -183,3 +235,4 @@ To settle in the milestone's `/brainstorm`, or earlier when they block:
 3. **Hosting (M1).** Fly.io, Gigalixir, a VPS or something else. This affects Postgres with pgvector.
 4. **Admin auth (M1).** Closed `phx.gen.auth` versus basic auth for the internal phase.
 5. **Signup signal (M6).** How our own products report a signup back to Ditstar.
+6. **Autopilot posting (M9).** We're aiming for it (owner, 2026-11-18). Before building, check Reddit's API terms and its rules for automated accounts, and use the M7 numbers to set the limits. Posting from the customer's own account on autopilot is out of scope until that check is done.

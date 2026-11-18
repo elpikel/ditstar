@@ -37,13 +37,13 @@ Detected from `mix.exs` and `test/`. A tool marked "none" is never run or requir
 
 | Tool | Value |
 |---|---|
-| Formatter | `mix format` (with `Phoenix.LiveView.HTMLFormatter`) |
-| Linter | none |
+| Formatter | `mix format` with Styler (and `Phoenix.LiveView.HTMLFormatter`) |
+| Linter | `mix credo --strict`, with ex_slop checks |
 | Background jobs | none (Oban planned for the ingest/score pipeline; workers go in `lib/ditstar/workers/` once added) |
-| Test data | none yet |
+| Test data | fixture modules in `test/support/fixtures/` (`Ditstar.AccountsFixtures`: `user_fixture/1`, `user_scope_fixture/1`; `Ditstar.ProductsFixtures`: `product_fixture/2`) |
 | External API mocks | none |
 | API spec | none |
-| Web UI | LiveView (only the generated `PageController` so far) |
+| Web UI | LiveView app under `/app` (`Layouts.app/1` shell, `DitstarWeb.UI` components); controller-rendered landing page at `/` |
 
 ## Tests
 
@@ -62,13 +62,17 @@ Detected from `mix.exs` and `test/`. A tool marked "none" is never run or requir
 | Setting | Value |
 |---|---|
 | Router | `lib/ditstar_web/router.ex` |
-| Path prefixes | `/` (browser), `/dev` (LiveDashboard and mailbox preview, dev only) |
-| Pipelines (reviewer checks placement) | `:browser` (session, CSRF, secure headers), `:api` (JSON, no auth; not mounted yet) |
+| Path prefixes | `/` (landing, sign-up, sign-in), `/app` (signed-in app), `/users/settings`, `/dev` (LiveDashboard and mailbox preview, dev only) |
+| Pipelines (reviewer checks placement) | `:browser` (session, CSRF, secure headers, current scope), `:require_authenticated_user` (signed-in User; every `/app` route and Settings), `:api` (JSON, no auth; not mounted yet). `live_session :app` mounts `UserAuth :require_authenticated` then `CurrentProduct :assign_current_product`. |
 | API docs for clients | none (no external API clients) |
 
 ## Access rules (reviewer fails on any leak)
 
-None yet: no authentication. The data model is multi-tenant from day one (account → products → keywords and subreddits), so every thread, draft and tracked link must be scoped to an account.
+- Every Product, Keyword, Watched Subreddit and Competitor belongs to one Account. A User sees and changes only their Scope's Account's data: `Ditstar.Products` functions take the `Scope` and filter by `scope.account`.
+- `account_id` is never cast from params; it comes from the Scope.
+- Ids from params or the session (e.g. the Current Product) are resolved through the Scope; a foreign id is "not found" and changes nothing.
+- Sign-up never reveals whether an email is already registered.
+- The "Ditstar, labelled" (Managed Account) default poster is accepted only when `managed_posting_enabled` is on.
 
 ## Style overrides
 

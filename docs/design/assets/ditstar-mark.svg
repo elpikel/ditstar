@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="Ditstar">
+  <!-- On light: star #171A21, eyes #FBFBFA. On dark: star #B8F04A, eyes #171A21. -->
+  <path d="M12 1.5l2.9 7.6 7.6 2.9-7.6 2.9-2.9 7.6-2.9-7.6L1.5 12l7.6-2.9z" fill="#171A21"/>
+  <circle cx="9.9" cy="11.8" r="1.15" fill="#FBFBFA"/>
+  <circle cx="14.1" cy="11.8" r="1.15" fill="#FBFBFA"/>
+</svg>

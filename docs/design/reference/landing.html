@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ditstar: landing page</title>
+<!-- Design reference. Implement with the repo's own components; do not ship this file. See ../README.md -->
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../tokens.css">
+<style>
+body { margin: 0; }
+/* Phone: the landing page header keeps only the logo and the call to action. */
+@media (max-width: 640px) { .nav-link { display: none; } }
+</style>
+</head>
+<body>
+<div id="top" style="min-height: 100vh; display: flex; flex-direction: column; box-sizing: border-box; background: var(--page); color: var(--ink); font-family: var(--font-sans)">
+
+<header>
+<div style="max-width: 1180px; margin: 0 auto; padding: 22px 32px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+<a href="#top" style="display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink); font-weight: 800; font-size: 21px; letter-spacing: -0.03em">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><path d="M12 1.5l2.9 7.6 7.6 2.9-7.6 2.9-2.9 7.6-2.9-7.6L1.5 12l7.6-2.9z" fill="var(--ink)"></path><circle cx="9.9" cy="11.8" r="1.15" fill="var(--page)"></circle><circle cx="14.1" cy="11.8" r="1.15" fill="var(--page)"></circle></svg>
+<span>ditstar</span>
+</a>
+<nav style="display: flex; align-items: center; gap: 28px; flex-wrap: wrap; font-size: 14px; font-weight: 500">
+<a href="#how" class="nav-link" style="text-decoration: none; color: var(--text-muted); padding: 12px 0">How it works</a>
+<a href="#replying" class="nav-link" style="text-decoration: none; color: var(--text-muted); padding: 12px 0">Replying</a>
+<a href="#access" style="text-decoration: none; color: var(--white); background: var(--ink); font-weight: 600; padding: 12px 18px; border-radius: 10px">Get early access</a>
+</nav>
+</div>
+</header>
+
+<section style="max-width: 1180px; width: 100%; margin: 0 auto; padding: 80px 32px 104px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center">
+<span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: var(--chip); padding: 7px 12px; border-radius: 6px">Reddit lead finder</span>
+<h1 style="margin: 0; font-weight: 800; font-size: clamp(40px, 5.8vw, 84px); line-height: 0.98; letter-spacing: -0.045em; max-width: 980px; text-wrap: balance">Someone on Reddit is asking for your product right now.</h1>
+<p style="margin: 0; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.5; color: var(--text); max-width: 660px; text-wrap: pretty">Ditstar watches the subreddits that matter to you, picks out the people who want what you sell, and writes the first draft of your reply.</p>
+<div style="display: flex; flex-direction: column; align-items: stretch; gap: 8px; width: 100%; max-width: 480px; margin-top: 8px; text-align: left">
+<label for="d-email-hero" style="font-size: 13px; font-weight: 500; color: var(--text-muted)">Work email</label>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<input id="d-email-hero" type="email" placeholder="you@company.com" style="flex: 1 1 220px; min-width: 0; height: 56px; box-sizing: border-box; padding: 0 18px; background: var(--white); border: 1.5px solid var(--line-strong); border-radius: 10px; color: var(--ink); font-family: var(--font-sans); font-size: 16px">
+<button type="button" style="height: 56px; padding: 0 24px; border: 0; border-radius: 10px; background: var(--ink); color: var(--white); font-family: var(--font-sans); font-size: 16px; font-weight: 600; cursor: pointer">Get early access</button>
+</div>
+</div>
+
+<div style="width: 100%; margin-top: 36px; box-sizing: border-box; background: var(--slate); color: var(--on-slate); border-radius: 16px; overflow: hidden; box-shadow: 0 32px 80px rgba(23, 26, 33, 0.2); text-align: left">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 20px; border-bottom: 1px solid var(--slate-line)">
+<div style="display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--on-slate-muted)">
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 1.5l2.9 7.6 7.6 2.9-7.6 2.9-2.9 7.6-2.9-7.6L1.5 12l7.6-2.9z"></path></svg>
+<span>ditstar / [YOUR PRODUCT]</span>
+</div>
+<span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">Example data</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: var(--slate-raised); border-bottom: 1px solid var(--slate-line)">
+<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" style="flex: none"><path d="M12 1.5l2.9 7.6 7.6 2.9-7.6 2.9-2.9 7.6-2.9-7.6L1.5 12l7.6-2.9z" fill="var(--accent)"></path><circle cx="9.9" cy="11.8" r="1.15" fill="var(--ink)"></circle><circle cx="14.1" cy="11.8" r="1.15" fill="var(--ink)"></circle></svg>
+<span style="font-size: 15px; font-weight: 500">Morning. I found 3 threads worth a reply today.</span>
+</div>
+<div style="display: flex; flex-wrap: wrap">
+<div style="flex: 1 1 190px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; padding: 16px 12px; border-right: 1px solid var(--slate-line)">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<button type="button" style="display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: var(--slate-selected); color: var(--on-slate); font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer"><span>Inbox</span><span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-accent); background: var(--accent); padding: 2px 7px; border-radius: 999px">3</span></button>
+<button type="button" style="display: flex; align-items: center; min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent; color: var(--on-slate-muted); font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer">Results</button>
+<button type="button" style="display: flex; align-items: center; min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent; color: var(--on-slate-muted); font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer">Setup</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 0 12px">
+<span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-slate-muted)">Watching</span>
+<span style="font-family: var(--font-mono); font-size: 12px; color: var(--on-slate-2)">r/smallbusiness</span>
+<span style="font-family: var(--font-mono); font-size: 12px; color: var(--on-slate-2)">r/freelance</span>
+<span style="font-family: var(--font-mono); font-size: 12px; color: var(--on-slate-2)">r/Entrepreneur</span>
+</div>
+</div>
+<div style="flex: 3 1 250px; min-width: 0; display: flex; flex-direction: column; border-right: 1px solid var(--slate-line)">
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; background: var(--slate-raised); border-bottom: 1px solid var(--slate-line)">
+<span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">r/smallbusiness</span>
+<span style="font-size: 14px; font-weight: 500; line-height: 1.4">Simple invoicing that handles EU VAT, without a full accounting suite?</span>
+<span style="font-size: 12px; color: var(--accent)">Asking for a recommendation</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-bottom: 1px solid var(--slate-line)">
+<span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">r/freelance</span>
+<span style="font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--on-slate-2)">[COMPETITOR] doubled its price. What is everyone switching to?</span>
+<span style="font-size: 12px; color: var(--warn)">Unhappy with a competitor</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 16px 18px">
+<span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">r/Entrepreneur</span>
+<span style="font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--on-slate-2)">How do you chase late invoices without sounding rude?</span>
+<span style="font-size: 12px; color: var(--on-slate-muted)">Related question</span>
+</div>
+</div>
+<div style="flex: 6 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 18px; padding: 24px 28px 28px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">r/smallbusiness · asking for a recommendation</span>
+<span style="font-size: 20px; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em">Simple invoicing that handles EU VAT, without a full accounting suite?</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--on-slate-muted)">I sell to a handful of clients across the EU and only need invoices with the right VAT on them. Everything I find wants to be my whole accounting system.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-slate-muted)">Your draft</span>
+<p style="margin: 0; padding: 16px 18px; background: var(--slate-raised); border: 1px solid var(--slate-line-strong); border-radius: 12px; font-size: 16px; line-height: 1.6">Founder of [YOUR PRODUCT] here, so weigh this accordingly. It does EU VAT invoices and nothing else, which sounds like what you are after. Happy to answer questions in this thread.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" style="min-height: 46px; padding: 0 18px; border: 0; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-family: var(--font-sans); font-size: 15px; font-weight: 600; cursor: pointer">Copy and open thread</button>
+<button type="button" style="min-height: 46px; padding: 0 18px; border: 1px solid var(--slate-line-strong); border-radius: 10px; background: transparent; color: var(--on-slate); font-family: var(--font-sans); font-size: 15px; font-weight: 500; cursor: pointer">Edit</button>
+<button type="button" style="min-height: 46px; padding: 0 14px; border: 0; border-radius: 10px; background: transparent; color: var(--on-slate-muted); font-family: var(--font-sans); font-size: 15px; font-weight: 500; cursor: pointer">Skip</button>
+</div>
+</div>
+</div>
+</div>
+<p style="margin: 0; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted)">Fig. 1 · The inbox: threads worth a reply, each with a draft.</p>
+</section>
+
+<section id="how" style="border-top: 1px solid var(--line)">
+<div style="max-width: 1180px; margin: 0 auto; padding: 104px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted)">How it works</span>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(32px, 4vw, 54px); line-height: 1; letter-spacing: -0.04em">Three questions, answered.</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px">
+
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--white); border: 1px solid var(--line); border-radius: 20px">
+<span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted)">01 · Find</span>
+<h3 style="margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em">Where are people asking?</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--text)">Ditstar watches the subreddits, keywords and competitor names you pick, and keeps only the posts where someone wants a product like yours.</p>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 14px; padding: 18px; background: var(--slate); border-radius: 12px; font-family: var(--font-mono)">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-slate-muted)">Subreddits</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="font-size: 12px; color: var(--on-slate); border: 1px solid var(--slate-line-strong); padding: 5px 9px; border-radius: 6px">r/smallbusiness</span>
+<span style="font-size: 12px; color: var(--on-slate); border: 1px solid var(--slate-line-strong); padding: 5px 9px; border-radius: 6px">r/freelance</span>
+<span style="font-size: 12px; color: var(--on-slate); border: 1px solid var(--slate-line-strong); padding: 5px 9px; border-radius: 6px">r/Entrepreneur</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-slate-muted)">Keywords and competitors</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="font-size: 12px; color: var(--on-accent); background: var(--accent); padding: 5px 9px; border-radius: 6px">invoicing</span>
+<span style="font-size: 12px; color: var(--on-accent); background: var(--accent); padding: 5px 9px; border-radius: 6px">EU VAT</span>
+<span style="font-size: 12px; color: var(--on-slate); border: 1px solid var(--slate-line-strong); padding: 5px 9px; border-radius: 6px">[COMPETITOR]</span>
+</div>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--white); border: 1px solid var(--line); border-radius: 20px">
+<span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted)">02 · Draft</span>
+<h3 style="margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em">What do I say?</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--text)">Each thread arrives with a reply already written from the post and your product details. Change a word or rewrite it all.</p>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 18px; background: var(--slate); border-radius: 12px">
+<span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-slate-muted)">Your draft</span>
+<p style="margin: 0; font-size: 14px; line-height: 1.55; color: var(--on-slate)">Founder of [YOUR PRODUCT] here, so weigh this accordingly. It does EU VAT invoices and nothing else.</p>
+<span style="align-self: flex-start; font-family: var(--font-mono); font-size: 12px; color: var(--on-accent); background: var(--accent); padding: 6px 10px; border-radius: 6px">Copy and open thread</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--white); border: 1px solid var(--line); border-radius: 20px">
+<span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted)">03 · Track</span>
+<h3 style="margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em">Did it work?</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--text)">Every link is tagged, so you see which replies brought visits and signups, and which subreddits are worth your time.</p>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 18px; background: var(--slate); border-radius: 12px; font-family: var(--font-mono); font-size: 12px">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 56px 64px; gap: 12px; color: var(--on-slate-muted); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase">
+<span>Reply</span><span style="text-align: right">Visits</span><span style="text-align: right">Signups</span>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 56px 64px; gap: 12px; color: var(--on-slate)">
+<span>EU VAT invoicing</span><span style="text-align: right">41</span><span style="text-align: right; color: var(--accent)">3</span>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 56px 64px; gap: 12px; color: var(--on-slate)">
+<span>Leaving [COMPETITOR]</span><span style="text-align: right">18</span><span style="text-align: right; color: var(--accent)">1</span>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 56px 64px; gap: 12px; color: var(--on-slate)">
+<span>Late invoices</span><span style="text-align: right">9</span><span style="text-align: right; color: var(--on-slate-muted)">0</span>
+</div>
+<span style="color: var(--on-slate-muted); font-size: 11px">Example data</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="replying" style="border-top: 1px solid var(--line)">
+<div style="max-width: 1180px; margin: 0 auto; padding: 104px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted)">Replying</span>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(32px, 4vw, 54px); line-height: 1; letter-spacing: -0.04em">You decide who posts.</h2>
+</div>
+<div style="display: flex; flex-direction: column">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 32px 0; border-top: 1.5px solid var(--ink)">
+<h3 style="flex: 1 1 240px; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.02em">You post</h3>
+<p style="flex: 2 1 420px; min-width: 0; margin: 0; font-size: 18px; line-height: 1.6; color: var(--text)">The reply goes out from your own Reddit account. Ditstar opens the thread with the draft ready to paste, and nothing is posted without you.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 32px 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong)">
+<h3 style="flex: 1 1 240px; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.02em">We post, labelled</h3>
+<p style="flex: 2 1 420px; min-width: 0; margin: 0; font-size: 18px; line-height: 1.6; color: var(--text)">Ditstar posts from accounts it runs. Each reply says it is a paid placement, the account profile says who runs it, and you approve every draft. Only in subreddits that allow promotion.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="founder" style="border-top: 1px solid var(--line); background: var(--page-alt)">
+<div style="max-width: 1180px; margin: 0 auto; padding: 104px 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+<div style="flex: none; width: 280px; max-width: 100%; aspect-ratio: 1 / 1; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px dashed var(--line-dashed); border-radius: 24px; font-family: var(--font-mono); font-size: 13px; color: var(--text-muted)">[YOUR PHOTO]</div>
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted)">From the founder</span>
+<p style="margin: 0; font-size: clamp(21px, 2.1vw, 30px); font-weight: 600; line-height: 1.35; letter-spacing: -0.02em; text-wrap: pretty">I built Ditstar for my own products first. The people who need them ask about them on Reddit, and I never had the hours to go looking. So I made the tool I wanted: it finds the threads and hands me a reply I only have to check. Every feature runs on our own products before it reaches yours.</p>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: var(--font-hand); font-size: 44px; font-weight: 600; line-height: 1">Arkadiusz</span>
+<span style="font-size: 14px; color: var(--text-muted)">Founder, Ditstar</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="access" style="flex-grow: 1; display: flex; align-items: center; background: var(--ink); color: var(--on-slate)">
+<div style="max-width: 1180px; width: 100%; margin: 0 auto; padding: 104px 32px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center">
+<svg aria-hidden="true" width="64" height="64" viewBox="0 0 24 24"><path d="M12 1.5l2.9 7.6 7.6 2.9-7.6 2.9-2.9 7.6-2.9-7.6L1.5 12l7.6-2.9z" fill="var(--accent)"></path><circle cx="9.9" cy="11.8" r="1.15" fill="var(--ink)"></circle><circle cx="14.1" cy="11.8" r="1.15" fill="var(--ink)"></circle></svg>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(34px, 4.6vw, 64px); line-height: 1; letter-spacing: -0.04em; max-width: 820px; text-wrap: balance">Stop scrolling Reddit. Start answering it.</h2>
+<div style="display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 480px; text-align: left">
+<label for="d-email-foot" style="font-size: 13px; font-weight: 500; color: var(--on-slate-muted)">Work email</label>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<input id="d-email-foot" type="email" placeholder="you@company.com" style="flex: 1 1 220px; min-width: 0; height: 56px; box-sizing: border-box; padding: 0 18px; background: var(--charcoal-raised); border: 1px solid var(--slate-line-strong); border-radius: 10px; color: var(--on-slate); font-family: var(--font-sans); font-size: 16px">
+<button type="button" style="height: 56px; padding: 0 24px; border: 0; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-family: var(--font-sans); font-size: 16px; font-weight: 600; cursor: pointer">Get early access</button>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="background: var(--ink); color: var(--on-slate-muted); border-top: 1px solid var(--charcoal-line)">
+<div style="max-width: 1180px; margin: 0 auto; padding: 24px 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 12px">
+<span>ditstar.com</span>
+<span>© 2026 Ditstar</span>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

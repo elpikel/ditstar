@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ditstar app: Inbox</title>
+<!-- Design reference. Implement with the repo's own components; do not ship this file. See ../README.md -->
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../tokens.css">
+<style>
+body { margin: 0; }
+/* Phone: the landing page header keeps only the logo and the call to action. */
+@media (max-width: 640px) { .nav-link { display: none; } }
+</style>
+</head>
+<body>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch; box-sizing: border-box; background: var(--slate); color: var(--on-slate); font-family: var(--font-sans)">
+
+<aside style="flex: 1 1 220px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px; padding: 22px 16px; background: var(--slate-sidebar); border-right: 1px solid var(--slate-line)">
+<a href="app-inbox.html" style="display: flex; align-items: center; gap: 9px; padding: 0 8px; text-decoration: none; color: var(--on-slate); font-weight: 800; font-size: 20px; letter-spacing: -0.03em">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><path d="M12 1.5l2.9 7.6 7.6 2.9-7.6 2.9-2.9 7.6-2.9-7.6L1.5 12l7.6-2.9z" fill="var(--accent)"></path><circle cx="9.9" cy="11.8" r="1.15" fill="var(--ink)"></circle><circle cx="14.1" cy="11.8" r="1.15" fill="var(--ink)"></circle></svg>
+<span>ditstar</span>
+</a>
+<button type="button" aria-label="Switch product" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; padding: 0 12px; border: 1px solid var(--slate-line); border-radius: 10px; background: transparent; color: var(--on-slate); font-family: var(--font-mono); font-size: 12px; cursor: pointer">
+<span>[YOUR PRODUCT]</span>
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--on-slate-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<nav aria-label="Main" style="display: flex; flex-direction: column; gap: 4px">
+<a href="app-inbox.html" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; background: var(--slate-selected); text-decoration: none; color: var(--on-slate); font-size: 15px; font-weight: 600">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l3-8h12l3 8v6H3z"></path><path d="M3 13h5l1 3h6l1-3h5"></path></svg>
+<span style="flex-grow: 1">Inbox</span>
+<span style="font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--on-accent); background: var(--accent); padding: 2px 8px; border-radius: 999px">3</span>
+</a>
+<a href="app-results.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; text-decoration: none; color: var(--on-slate-2); font-size: 15px; font-weight: 500">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11"></path><path d="M12 20V4"></path><path d="M19 20v-6"></path></svg>
+<span>Results</span>
+</a>
+<a href="app-setup.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; text-decoration: none; color: var(--on-slate-2); font-size: 15px; font-weight: 500">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9"></path><path d="M17 7h3"></path><path d="M4 17h3"></path><path d="M11 17h9"></path><circle cx="15" cy="7" r="2"></circle><circle cx="9" cy="17" r="2"></circle></svg>
+<span>Setup</span>
+</a>
+</nav>
+<span style="margin-top: auto; padding: 0 12px; font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">Example data</span>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 14px; padding: 22px 32px; border-bottom: 1px solid var(--slate-line)">
+<svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" style="flex: none"><path d="M12 1.5l2.9 7.6 7.6 2.9-7.6 2.9-2.9 7.6-2.9-7.6L1.5 12l7.6-2.9z" fill="var(--accent)"></path><circle cx="9.9" cy="11.8" r="1.15" fill="var(--ink)"></circle><circle cx="14.1" cy="11.8" r="1.15" fill="var(--ink)"></circle></svg>
+<h1 style="margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.02em">Morning. I found 3 threads worth a reply today.</h1>
+</div>
+
+<div style="flex-grow: 1; display: flex; flex-wrap: wrap; align-items: stretch">
+<section aria-label="Threads" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; border-right: 1px solid var(--slate-line)">
+<div style="display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 16px; border-bottom: 1px solid var(--slate-line)">
+<button type="button" aria-pressed="true" style="min-height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--on-slate); color: var(--ink); font-family: var(--font-sans); font-size: 13px; font-weight: 600; cursor: pointer">New · 3</button>
+<button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: var(--on-slate-2); font-family: var(--font-sans); font-size: 13px; font-weight: 500; cursor: pointer">Posted</button>
+<button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: var(--on-slate-2); font-family: var(--font-sans); font-size: 13px; font-weight: 500; cursor: pointer">Skipped</button>
+</div>
+<button type="button" aria-pressed="true" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px 20px; border: 0; border-bottom: 1px solid var(--slate-line); background: var(--slate-raised); color: var(--on-slate); font-family: var(--font-sans); text-align: left; cursor: pointer">
+<span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">r/smallbusiness · 2h ago</span>
+<span style="font-size: 15px; font-weight: 600; line-height: 1.4">Simple invoicing that handles EU VAT, without a full accounting suite?</span>
+<span style="font-size: 13px; color: var(--accent)">Asking for a recommendation</span>
+</button>
+<button type="button" aria-pressed="false" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px 20px; border: 0; border-bottom: 1px solid var(--slate-line); background: transparent; color: var(--on-slate-2); font-family: var(--font-sans); text-align: left; cursor: pointer">
+<span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">r/freelance · 5h ago</span>
+<span style="font-size: 15px; font-weight: 500; line-height: 1.4">[COMPETITOR] doubled its price. What is everyone switching to?</span>
+<span style="font-size: 13px; color: var(--warn)">Unhappy with a competitor</span>
+</button>
+<button type="button" aria-pressed="false" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px 20px; border: 0; border-bottom: 1px solid var(--slate-line); background: transparent; color: var(--on-slate-2); font-family: var(--font-sans); text-align: left; cursor: pointer">
+<span style="font-family: var(--font-mono); font-size: 11px; color: var(--on-slate-muted)">r/Entrepreneur · 9h ago</span>
+<span style="font-size: 15px; font-weight: 500; line-height: 1.4">How do you chase late invoices without sounding rude?</span>
+<span style="font-size: 13px; color: var(--on-slate-2)">Related question</span>
+</button>
+</section>
+
+<section aria-label="Thread and draft" style="flex: 2 1 480px; min-width: 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px; padding: 28px 36px 36px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font-family: var(--font-mono); font-size: 12px; color: var(--on-slate-muted)">r/smallbusiness · asking for a recommendation</span>
+<a href="#" style="display: flex; align-items: center; gap: 6px; min-height: 44px; text-decoration: none; color: var(--on-slate-2); font-size: 13px; font-weight: 500">
+<span>Open on Reddit</span>
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg>
+</a>
+</div>
+<h2 style="margin: 0; font-size: 26px; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em">Simple invoicing that handles EU VAT, without a full accounting suite?</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--on-slate-2)">I sell to a handful of clients across the EU and only need invoices with the right VAT on them. Everything I find wants to be my whole accounting system. What do you all use?</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px">
+<span style="color: var(--on-slate-muted)">Matched</span>
+<span style="color: var(--on-accent); background: var(--accent); padding: 4px 9px; border-radius: 6px">invoicing</span>
+<span style="color: var(--on-accent); background: var(--accent); padding: 4px 9px; border-radius: 6px">EU VAT</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 700px">
+<span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-slate-muted)">Your draft</span>
+<p style="margin: 0; padding: 20px 22px; background: var(--slate-raised); border: 1px solid var(--slate-line-strong); border-radius: 14px; font-size: 17px; line-height: 1.6">Founder of [YOUR PRODUCT] here, so weigh this accordingly. It does EU VAT invoices and nothing else, which sounds like what you are after. Happy to answer questions in this thread.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 700px">
+<span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-slate-muted)">Who posts this one</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" aria-pressed="true" style="min-height: 44px; padding: 0 16px; border: 1.5px solid var(--on-slate); border-radius: 10px; background: var(--slate-selected); color: var(--on-slate); font-family: var(--font-sans); font-size: 14px; font-weight: 600; cursor: pointer">You, from your account</button>
+<button type="button" aria-pressed="false" style="min-height: 44px; padding: 0 16px; border: 1px solid var(--slate-line-strong); border-radius: 10px; background: transparent; color: var(--on-slate-2); font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer">Ditstar, labelled as paid</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px">
+<button type="button" style="min-height: 52px; padding: 0 22px; border: 0; border-radius: 12px; background: var(--accent); color: var(--on-accent); font-family: var(--font-sans); font-size: 16px; font-weight: 600; cursor: pointer">Copy and open thread</button>
+<button type="button" style="min-height: 52px; padding: 0 20px; border: 1px solid var(--slate-line-strong); border-radius: 12px; background: transparent; color: var(--on-slate); font-family: var(--font-sans); font-size: 16px; font-weight: 500; cursor: pointer">Edit draft</button>
+<button type="button" style="min-height: 52px; padding: 0 16px; border: 0; border-radius: 12px; background: transparent; color: var(--on-slate-2); font-family: var(--font-sans); font-size: 16px; font-weight: 500; cursor: pointer">Skip</button>
+</div>
+</section>
+</div>
+</main>
+
+</div>
+</body>
+</html>

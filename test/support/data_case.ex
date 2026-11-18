@@ -1,7 +1,6 @@
 defmodule Ditstar.DataCase do
   @moduledoc """
-  This module defines the setup for tests requiring
-  access to the application's data layer.
+  Test case for tests requiring access to the application's data layer.
 
   You may define functions here to be used as helpers in
   your tests.
@@ -16,14 +15,16 @@ defmodule Ditstar.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
-      alias Ditstar.Repo
-
+      import Ditstar.DataCase
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Ditstar.DataCase
+
+      alias Ditstar.Repo
     end
   end
 
@@ -36,8 +37,8 @@ defmodule Ditstar.DataCase do
   Sets up the sandbox based on the test tags.
   """
   def setup_sandbox(tags) do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Ditstar.Repo, shared: not tags[:async])
-    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+    pid = Sandbox.start_owner!(Ditstar.Repo, shared: not tags[:async])
+    on_exit(fn -> Sandbox.stop_owner(pid) end)
   end
 
   @doc """

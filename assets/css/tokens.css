@@ -1,0 +1,60 @@
+/*
+ * Ditstar design tokens.
+ * Source of truth for colour, type, radius and spacing.
+ * The reference HTML in ./reference/ uses these colour and font variables.
+ * Radii and layout values appear there as plain numbers; the names below are the ones to use in code.
+ */
+:root {
+  /* ---- Light surfaces (landing page) ---- */
+  --page: #FBFBFA;            /* page background */
+  --page-alt: #F3F4F2;        /* alternate section background (founder note) */
+  --white: #FFFFFF;           /* cards, inputs, text on --ink */
+  --chip: #ECEDEB;            /* small label chips on light */
+  --ink: #171A21;             /* headings, primary button on light, closing band */
+  --text: #3D4246;            /* body text on light */
+  --text-muted: #5C6166;      /* captions, labels on light (4.5:1 on --page) */
+  --line: #E4E5E3;            /* hairlines, card borders on light */
+  --line-strong: #C9CCCF;     /* input borders on light */
+  --line-dashed: #8A9096;     /* dashed placeholder outline */
+
+  /* ---- Slate surfaces (the app, and the app preview on the landing page) ---- */
+  --slate: #262C38;           /* app background */
+  --slate-sidebar: #222733;   /* app sidebar */
+  --slate-raised: #2E3542;    /* draft box, selected list row, callout bar */
+  --slate-selected: #323947;  /* selected nav item, selected choice */
+  --slate-line: #3D4554;      /* dividers in the app */
+  --slate-line-strong: #4A5364; /* input and button borders in the app */
+  --on-slate: #E8EDF0;        /* primary text on slate */
+  --on-slate-2: #C9D2D8;      /* secondary text on slate */
+  --on-slate-muted: #9AA7B0;  /* meta text on slate. Do not use on --slate-selected */
+
+  /* ---- Charcoal band (landing page closing call to action and footer) ---- */
+  --charcoal-raised: #1E222B; /* input background on the --ink band */
+  --charcoal-line: #262B35;   /* footer divider on the --ink band */
+
+  /* ---- Accent and status ---- */
+  --accent: #B8F04A;          /* lime. Use ONLY on slate/ink surfaces, or as a fill with --on-accent text */
+  --on-accent: #171A21;       /* text on --accent */
+  --warn: #F2B66B;            /* "Unhappy with a competitor" tag, competitor chips */
+
+  /* ---- Type ---- */
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-hand: Caveat, "Segoe Script", cursive; /* founder signature only */
+
+  /* ---- Radius ---- */
+  --radius-chip: 6px;
+  --radius-control: 10px;     /* inputs and buttons on the landing page */
+  --radius-control-app: 12px; /* primary buttons in the app */
+  --radius-card: 14px;
+  --radius-window: 16px;
+  --radius-feature: 20px;
+  --radius-pill: 999px;
+
+  /* ---- Layout ---- */
+  --container: 1180px;        /* landing page max content width */
+  --gutter: 32px;             /* landing page side padding */
+  --section-y: 104px;         /* landing page section padding, top and bottom */
+  --sidebar: 220px;           /* app sidebar width */
+  --target-min: 44px;         /* minimum height of buttons and links (filter tabs and chips are 36px) */
+}

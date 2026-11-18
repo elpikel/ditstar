@@ -7,9 +7,14 @@
 # General application configuration
 import Config
 
-config :ditstar,
-  ecto_repos: [Ditstar.Repo],
-  generators: [timestamp_type: :utc_datetime]
+# Configure the mailer
+#
+# By default it uses the "Local" adapter which stores the emails
+# locally. You can see the emails in your browser, at "/dev/mailbox".
+#
+# For production it's recommended to configure a different adapter
+# at the `config/runtime.exs`.
+config :ditstar, Ditstar.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure the endpoint
 config :ditstar, DitstarWeb.Endpoint,
@@ -22,19 +27,23 @@ config :ditstar, DitstarWeb.Endpoint,
   pubsub_server: Ditstar.PubSub,
   live_view: [signing_salt: "B3pGT1qm"]
 
-# Configure LiveView
-config :phoenix_live_view,
-  # the attribute set on all root tags. Used for Phoenix.LiveView.ColocatedCSS.
-  root_tag_attribute: "phx-r"
+config :ditstar, :scopes,
+  user: [
+    default: true,
+    module: Ditstar.Accounts.Scope,
+    assign_key: :current_scope,
+    access_path: [:user, :id],
+    schema_key: :user_id,
+    schema_type: :id,
+    schema_table: :users,
+    test_data_fixture: Ditstar.AccountsFixtures,
+    test_setup_helper: :register_and_log_in_user
+  ]
 
-# Configure the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :ditstar, Ditstar.Mailer, adapter: Swoosh.Adapters.Local
+config :ditstar,
+  ecto_repos: [Ditstar.Repo],
+  generators: [timestamp_type: :utc_datetime],
+  managed_posting_enabled: false
 
 # Configure esbuild (the version is required)
 config :esbuild,
@@ -45,6 +54,19 @@ config :esbuild,
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
   ]
+
+# Configure Elixir's Logger
+config :logger, :default_formatter,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
+# Configure LiveView
+config :phoenix_live_view,
+  # the attribute set on all root tags. Used for Phoenix.LiveView.ColocatedCSS.
+  root_tag_attribute: "phx-r"
 
 # Configure tailwind (the version is required)
 config :tailwind,
@@ -57,14 +79,6 @@ config :tailwind,
     cd: Path.expand("..", __DIR__),
     env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
   ]
-
-# Configure Elixir's Logger
-config :logger, :default_formatter,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
-
-# Use Jason for JSON parsing in Phoenix
-config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
