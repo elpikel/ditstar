@@ -1,7 +1,5 @@
 # Ditstar — project overview
 
-2026-11-18
-
 ## What it is
 
 Ditstar finds Reddit conversations where people are asking for a product like yours and helps you answer them well.
@@ -27,6 +25,17 @@ A thread moves through five steps, from Reddit to a tracked reply.
 5. **Track.** Tagged links report which replies brought traffic and signups.
 
 Planned stack: Elixir and Phoenix, with a background job pipeline for ingest and scoring.
+
+## Managed accounts
+
+Customers who don't want to post themselves can have Ditstar post for them from accounts Ditstar operates. These are labelled paid placements.
+
+- **Disclosed in every reply.** Each reply says it is a paid placement for the product, in the reply text itself.
+- **Disclosed on the account.** The account profile states that it is operated by Ditstar and posts on behalf of customers.
+- **Where it's allowed.** Managed replies go only to subreddits whose rules permit promotional replies.
+- **Customer approval.** The customer approves each draft before it is posted.
+
+Posting from the customer's own Reddit account stays available as the alternative.
 
 ## Who it's for
 
